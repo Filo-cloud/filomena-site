@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filomena page</title>
+    <style>
+        body {
+            background-color: aqua;
+            color: black;
+            font:normal 20 pt Arial;
+         }
+         h1 {
+            color: brown;
+         }
+         equipamento {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+         }
+         comentário {
+            display: none;
+            margin-bottom: 10px;
+         }
+          comentários-enviados {
+            background-color: #eee;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+         }
+    </style>
+</head>
+<body>
+    <h1>Filomena informações:</h1>
+
+    <div class="equipamento">
+    <h2>Bomba 1</h2>
+    <p>Status:</p>
+    <button onclick="marcarFuncionando()">✅ Funcionando</button>
+    <button onclick="mostrarCampoComentario()">❌ Com problema</button>
+
+    <div class="comentario" id="campoComentario">
+      <p>Descreva o problema:</p>
+      <textarea id="textoProblema" rows="4" cols="50"></textarea><br>
+      <button onclick="enviarComentario()">Enviar</button>
+    </div>
+
+    <div class="comentarios-enviados" id="comentarios">
+      <h3>Comentários:</h3>
+    </div>
+  </div>
+
+  <script>
+    function mostrarCampoComentario() {
+      document.getElementById('campoComentario').style.display = 'block';
+    }
+
+    function marcarFuncionando() {
+      document.getElementById('campoComentario').style.display = 'none';
+      const comentarios = document.getElementById('comentarios');
+      const p = document.createElement('p');
+      p.textContent = '✅ Equipamento funcionando normalmente.';
+      comentarios.appendChild(p);
+    }
+
+    function enviarComentario() {
+      const texto = document.getElementById('textoProblema').value.trim();
+      if (texto !== "") {
+        const comentarios = document.getElementById('comentarios');
+        const p = document.createElement('p');
+        p.textContent = `❌ Problema relatado: ${texto}`;
+        comentarios.appendChild(p);
+        document.getElementById('textoProblema').value = "";
+        document.getElementById('campoComentario').style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
